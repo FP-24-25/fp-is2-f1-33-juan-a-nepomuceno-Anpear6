@@ -7,6 +7,8 @@ Created on 8 nov 2024
 from __future__ import annotations
 from typing import Generic, TypeVar
 from abc import ABC, abstractmethod
+#Para la defensa 2 importamos:
+from typing import Callable
 
 E = TypeVar('E')
 
@@ -45,6 +47,24 @@ class Agregado_lineal(Generic[E]):
         while not self.is_empty:
             removed_e.append(self.remove())
         return removed_e
+    
+    #A partir de aquí se añaden los métodos nuevos de la defensa (Ejercicio 2)
+    
+    def contains(self, e:E) -> bool:
+        return e in self._elements
+    
+    def find(self, func:Callable[[E], bool]) -> E | None:
+        for i in self._elements:
+            if func(i):
+                return i
+        return None
+    
+    def filter(self, func:Callable[[E], bool]) -> list[E]:
+        l:list[E] = []
+        for i in self._elements:
+            if func(i):
+                l.append(i)
+        return l
         
 if __name__ == '__main__':
     pass
