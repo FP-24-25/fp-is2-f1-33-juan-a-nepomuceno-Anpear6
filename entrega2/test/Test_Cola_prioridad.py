@@ -1,0 +1,37 @@
+'''
+Created on 8 nov 2024
+
+@author: perez
+'''
+
+from __future__ import annotations
+from typing import Generic, TypeVar, Callable
+from abc import abstractmethod
+from Agregado_lineal import Agregado_lineal
+from Cola_prioridad import Cola_de_prioridad
+'''
+from entrega2.tipos.Cola_prioridad import * 
+'''
+def test_cola_prioridad(): 
+    cola = Cola_de_prioridad[str, int]() 
+    
+    # Agregar pacientes 
+    cola.add('Paciente A', 3) # Dolor de cabeza leve 
+    cola.add('Paciente B', 2) # Fractura en la pierna 
+    cola.add('Paciente C', 1) # Ataque cardíaco 
+    
+    # Verificar el estado de la cola 
+    assert cola.elements() == ['Paciente C', 'Paciente B', 'Paciente A'], "El orden de la cola es incorrecto." 
+    
+    # Atender a los pacientes y verificar el orden de atención 
+    atencion = [] 
+    while not cola.is_empty(): 
+        atencion.append(cola.remove()) 
+    
+    assert atencion == ['Paciente C', 'Paciente B', 'Paciente A'], "El orden de atención no es correcto." 
+    
+    print("Pruebas superadas exitosamente.")
+    
+if __name__ == '__main__':
+    test_cola_prioridad()
+    
